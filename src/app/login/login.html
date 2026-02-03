@@ -1,1 +1,31 @@
-<p>login works!</p>
+<div class="container">
+    <div style="background-image: url('https://static.vecteezy.com/system/resources/thumbnails/033/027/755/small_2x/flat-lay-vegetables-on-white-background-food-and-diet-concept-ai-generated-free-photo.jpg'); height: 100vh; background-size: cover;" class="row align-items-center">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 text-center">
+            <h1>Login</h1>
+            <p>More than 100 plus Recipes from around the world</p>
+            <form [formGroup]="loginForm" (ngSubmit)="login()" style="background-color: rgba(0, 0, 0, 0.3); width: 400px;" class="border shadow p-5 rounded my-5">
+                <div class="mb-5 text-center text-light">
+                    <h3><i class="fa-solid fa-utensils"></i> Cookpedia</h3>
+                </div>
+                <div class="mb-3">
+                    <input name="email" formControlName="email" type="email" placeholder="Email" class="form-control">
+                </div>
+                @if (loginForm.get('email')?.errors && loginForm.get('email')?.touched){
+                    <div class="text-danger fw-bolder mb-3">Invalid Email</div>
+                }
+                <div class="mb-3">
+                    <input name="password" formControlName="password" type="password" placeholder="Password" class="form-control">
+                </div>
+                @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched){
+                    <div class="text-danger fw-bolder mb-3">Invalid Password</div>
+                }
+                <div class="mb-3 d-grid">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+<app-footer></app-footer>

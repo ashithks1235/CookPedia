@@ -1,1 +1,69 @@
-<p>view-recipe works!</p>
+<app-header></app-header>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <a routerLink="/recipes">Back to Recipe List</a>
+            <div class="my-2">
+                <img [src]="recipe().image" class="img-fluid" alt="recipe">
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-success">DOWNLOAD RECIPE</button>
+                <button class="btn btn-primary">SAVE RECIPE</button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <h1>{{recipe().name}}</h1>
+            <div class="row my-4">
+                <div class="col-lg-4">
+                    <h6>Cusine : {{recipe().cuisine}}</h6>
+                </div>
+                <div class="col-lg-4">
+                    <h6>Servings : {{recipe().servings}}</h6>
+                </div>
+                <div class="col-lg-4">
+                    <h6>Mode of Cooking : {{recipe().difficulty}}</h6>
+                </div>
+                <div class="col-lg-4 text-md-center">
+                    <img width="130px" src="https://cdn-icons-png.flaticon.com/512/651/651203.png" alt="logo">
+                    <h6>Preparation Time : {{recipe().prepTimeMinutes}} Minutes</h6>
+                </div>
+                <div class="col-lg-4 text-md-center">
+                    <img width="130px" src="https://www.shutterstock.com/image-vector/cooking-time-icon-chef-hat-260nw-2649175975.jpg" alt="logo">
+                    <h6>Cooking Time : {{recipe().cookTimeMinutes}} Minutes</h6>
+                </div>
+                <div class="col-lg-4 text-md-center">
+                    <img width="130px" src="https://static.vecteezy.com/system/resources/previews/003/658/609/non_2x/linear-calories-icon-design-template-illustration-free-vector.jpg" alt="logo">
+                    <h6>Calorie Per Servings : {{recipe().caloriesPerServing}}</h6>
+                </div>
+            </div>
+            <h3>Ingredients Needed</h3>
+            <ol>
+                @for (item of recipe().ingredients; track $index){
+                    <li>{{item}}</li>
+                }
+            </ol>
+            <h3>Instructions Needed</h3>
+            <ol>
+                @for (item of recipe().instructions; track $index){
+                    <li>{{item}}</li>
+                }
+            </ol>
+        </div>
+    </div>
+    @if(allRelatedRecipes().length>0){
+        <h1>All Related Recipes</h1>
+        <div class="row">
+            @for (recipe of allRelatedRecipes(); track $index) {
+                <div class="col-lg-2">
+                        <div (click)="viewRelatedRecipePage(recipe._id)" class="p-3">
+                            <img [src]="recipe.image" alt="recipe" class="card-img-top img-fluid">
+                            <div class="card-body">
+                                <p class="card-title">{{recipe.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+    }
+</div>
+<app-footer></app-footer>
