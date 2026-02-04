@@ -7,8 +7,8 @@
                 <img [src]="recipe().image" class="img-fluid" alt="recipe">
             </div>
             <div class="d-flex justify-content-between">
-                <button class="btn btn-success">DOWNLOAD RECIPE</button>
-                <button class="btn btn-primary">SAVE RECIPE</button>
+                <button (click)="downloadRecipe()" class="btn btn-success">DOWNLOAD RECIPE</button>
+                <button (click)="saveRecipe()" class="btn btn-primary">SAVE RECIPE</button>
             </div>
         </div>
         <div class="col-lg-6">

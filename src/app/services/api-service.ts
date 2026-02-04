@@ -41,4 +41,19 @@ export class ApiService {
   getRelatedRecipesAPI(cusine:string){
     return this.http.get(`${this.server_url}/recipes-related?cuisine=${cusine}`,this.appendToken())
   }
+
+  //http://localhost:3000/downloads/696f4fadcf68a81d18f610ba: post by view recipe component when download btn clicked
+  downloadRecipeAPI(recipeId:string,reqBody:any){
+    return this.http.post(`${this.server_url}/downloads/${recipeId}`,reqBody,this.appendToken())
+  }
+
+  //http://localhost:3000/save-recipe/696f4fadcf68a81d18f610ba : post by view recipe component when save btn clicked
+  saveRecipeAPI(recipeId:string,reqBody:any){
+    return this.http.post(`${this.server_url}/save-recipe/${recipeId}`,reqBody,this.appendToken())
+  }
+
+  //http://localhost:3000/save-recipes : get by save recipe when page loads
+  getUserSavedRecipesAPI(){
+    return this.http.get(`${this.server_url}/save-recipes`,this.appendToken())
+  }
 }
