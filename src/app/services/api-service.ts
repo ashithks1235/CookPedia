@@ -56,4 +56,29 @@ export class ApiService {
   getUserSavedRecipesAPI(){
     return this.http.get(`${this.server_url}/save-recipes`,this.appendToken())
   }
+
+  // /save-recipes/:id: delete by save recipe when delte btn clicked
+  removeUserSavedRecipeItemAPI(id:string){
+    return this.http.delete(`${this.server_url}/save-recipes/${id}`,this.appendToken())
+  }
+
+  // http://localhost:3000/feedbacks : post by contact when submit clicked
+addFeedbackAPI(reqBody:any){
+    return this.http.post(`${this.server_url}/feedbacks`,reqBody)
+  }
+
+  //approve-feedbacks : get request by home when page loads
+  getApproveFeedbacksAPI(){
+    return this.http.get(`${this.server_url}/approve-feedbacks`)
+  }
+
+  //http://localhost:3000/user/697365bcc09c585754d644ee put request by profile component when picture upload
+  updateUserProfileAPI(id:string,reqBody:any){
+    return this.http.put(`${this.server_url}/user/${id}`,reqBody,this.appendToken())
+  }
+
+  //http://localhost:3000/user-downloads : get request bt profile when page loads
+  getUserDownloadAPI(){
+    return this.http.get(`${this.server_url}/user-downloads`,this.appendToken())
+  }
 }

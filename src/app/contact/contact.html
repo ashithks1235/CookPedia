@@ -1,1 +1,93 @@
-<p>contact works!</p>
+<app-header></app-header>
+<div class="container my-5">
+    <div style="height: 400px;" class="row bg-success text-light align-items-center">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <h1>Contact Us</h1>
+            <p>Cookpedia, we belive food is more than just sustence - it's culture, creativity, and joy shared around the table. Wheather you're a beginner cook or a seasoned chef, we're here to help you discover, learn, and enjoy every moment you spend in the kitchen</p>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+    <div class="row my-5 align-items-center">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+            <h3>Get In Touch</h3>
+            <p style="text-align: justify;">Cookpedia, we belive food is more than just sustence - it's culture, creativity, and joy shared around the table. Wheather you're a beginner cook or a seasoned chef, we're here to help you discover, learn, and enjoy every moment you spend in the kitchen</p>
+            <div>
+                <div class="d-flex">
+                    <div style="width: 40px;height: 40px;border-radius: 50%;" class="bg-success text-light d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-location"></i></div>
+                        <div class="ms-3">
+                            <h5>Address</h5>
+                            <p>Cookpedia, Kerala-847754</p>
+                        </div>
+                </div>
+                <div class="d-flex">
+                    <div style="width: 40px;height: 40px;border-radius: 50%;" class="bg-success text-light d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-envelope"></i></div>
+                        <div class="ms-3">
+                            <h5>Mail</h5>
+                            <p>enquiry@cookpedia.com</p>
+                        </div>
+                    
+                </div>
+                <div class="d-flex">
+                    <div style="width: 40px;height: 40px;border-radius: 50%;" class="bg-success text-light d-flex justify-content-center align-items-center">
+                        <i class="fa-solid fa-phone"></i></div>
+                        <div class="ms-3">
+                            <h5>Phone Number</h5>
+                            <p>7676748345</p>
+                        </div>
+                </div>
+                <hr>
+                <h3>Follow Us</h3>
+                <div class="d-flex">
+                    <div style="width: 40px;height: 40px;border-radius: 50%;" class="bg-success text-light d-flex justify-content-center align-items-center me-3">
+                    <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div style="width: 40px;height: 40px;border-radius: 50%;" class="bg-success text-light d-flex justify-content-center align-items-center me-3">
+                    <i class="fa-brands fa-facebook"></i>
+                    </div>
+                    <div style="width: 40px;height: 40px;border-radius: 50%;" class="bg-success text-light d-flex justify-content-center align-items-center me-3">
+                    <i class="fa-brands fa-twitter"></i>
+                    </div>
+                    <div style="width: 40px;height: 40px;border-radius: 50%;" class="bg-success text-light d-flex justify-content-center align-items-center me-3">
+                    <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4">
+            <form #feedbackForm="ngForm" (ngSubmit)="submitFeedback()" class="border shadow rounded p-5">
+                <h3>Client Testimony</h3>
+                <div class="mb-3 mt-5">
+                    <input #username="ngModel" name="username" [(ngModel)]="name" type="text" placeholder="Name" class="form-control" required pattern="[a-zA-Z ]*">
+                </div>
+                @if (username.invalid && username.touched){
+                    <div class="mb-3 text-danger">*Invalid Name</div>
+                }
+                <div class="mb-3">
+                    <input #usermail="ngModel" name="mail" [(ngModel)]="email" type="email" placeholder="Email" class="form-control" required email>
+                </div>
+                @if (usermail.invalid && usermail.touched){
+                    <div class="mb-3 text-danger">*Invalid Email</div>
+                }
+                <div class="mb-3">
+                    <textarea #userMessage="ngModel" name="message" [(ngModel)]="message" placeholder="Message" class="form-control" required></textarea>
+                </div>
+                @if (userMessage.invalid && userMessage.touched){
+                    <div class="mb-3 text-danger">*Invalid Message</div>
+                }
+                <p class="text-secondary">By Submitting, you're agreeing the terms and condition of our website. We may use your details in our site.</p>
+                <div class="mb-3 float-end">
+                    <button type="submit" [disabled]="feedbackForm.invalid" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="my-5">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.9841723019904!2d76.3426715!3d10.018164400000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080ffce877d5ef%3A0x8bef6870ad11b98!2sLuminar%20Technolab%20-%20Python%2C%20Data%20Science%2C%20AI%2C%20ASP.NET%2C%20Flutter%2C%20Software%20Testing%20Training%20Institute%20in%20Kochi!5e0!3m2!1sen!2sin!4v1770198219222!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+<app-footer></app-footer>

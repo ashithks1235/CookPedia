@@ -1,1 +1,31 @@
-<p>profile works!</p>
+<app-header></app-header>
+<div class="container">
+    <div style="height: 200px;" class="row bg-success"></div>
+    <div style="width: 220px;height: 220px;border-radius: 50%;margin-top: -110px;" class="p-2 border">
+        <img width="200px" height="200px" [src]="imgURL()" style="border-radius: 50%;" alt="picture">
+    </div>
+    <label for="upload">
+        <span style="margin-top: -50%;margin-left: 110px;" class="btn bg-success"><i class="fa-solid fa-upload"></i></span>
+        <input (change)="uploadPicture($event)" type="file" id="upload" accept="image/*" hidden>
+    </label>
+    <div class="mb-5 d-flex align-items-center">
+        <h1>{{username}}</h1><i class="fa-solid fa-check-circle text-primary fa-2x ms-2"></i>
+    </div>
+    <p style="text-align: justify; ">I’m a passionate food lover who enjoys exploring traditional Kerala recipes as well as experimenting with modern cuisines. Cooking is not just a daily routine for me—it’s a creative outlet and a way to connect with culture, family, and memories. Through Cookpedia, I love discovering new recipes, saving my favorites, and sharing cooking ideas with others.</p>
+    <p> Favorite Cuisines: 🍛 Indian • 🌮 Continental • 🍜 Asian</p>
+    <p> Special Interests: <br> Trying seasonal and healthy recipes <br> Collecting quick and easy home-cooked meals <br> Exploring regional flavors and spices </p>
+    <h3 class="my-5">Recipe Download List</h3>
+    <div class="row">
+            @for (recipe of downloadList(); track $index) {
+                <div class="col-lg-2">
+                        <div routerLink="/recipes/{{recipe.recipeId}}/view" class="p-3">
+                            <img [src]="recipe.image" alt="recipe" class="card-img-top img-fluid">
+                            <div class="card-body">
+                                <p class="card-title">{{recipe.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+</div>
+<app-footer></app-footer>

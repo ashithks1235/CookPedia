@@ -69,7 +69,7 @@ export class ViewRecipe {
   }
 
   saveRecipe(){
-    this.api.saveRecipeAPI(this.recipeId,{name:this.recipe().name,image:this.recipe().image}).subscribe({
+    this.api.saveRecipeAPI(this.recipe()._id,{name:this.recipe().name,image:this.recipe().image}).subscribe({
       next:(res:any)=>{
         alert(`${this.recipe().name} added to your collection`)
       },

@@ -27,4 +27,9 @@ export class SaveRecipe {
     })
   }
 
+  removeRecipe(id:string){
+    this.api.removeUserSavedRecipeItemAPI(id).subscribe((res:any)=>{
+      this.getSaveCollection()
+    })
+  }
 }
