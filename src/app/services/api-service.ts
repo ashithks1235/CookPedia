@@ -81,4 +81,30 @@ addFeedbackAPI(reqBody:any){
   getUserDownloadAPI(){
     return this.http.get(`${this.server_url}/user-downloads`,this.appendToken())
   }
+
+  //http://localhost:3000/downloads : get by admin download list
+  getAllDownloadAPI(){
+    return this.http.get(`${this.server_url}/downloads`,this.appendToken())
+  }
+
+  //http://localhost:3000/users : get request from user component
+  getAllUsersAPI(){
+    return this.http.get(`${this.server_url}/users`,this.appendToken())
+  }
+
+  //http://localhost:3000/feedbacks : get
+  getAllFeedbacksAPI(){
+    return this.http.get(`${this.server_url}/feedbacks`,this.appendToken())
+  }
+
+  // http://localhost:3000/feedbacks/69830a3ca2ea489fb3cdbfb8 : put
+  updateFeedbackAPI(id:string,reqBody:any){
+    return this.http.put(`${this.server_url}/feedbacks/${id}`,reqBody,this.appendToken())
+  }
+
+  //http://localhost:3000/recipes : post
+  addRecipeAPI(reqBody:any){
+    return this.http.post(`${this.server_url}/recipes`,reqBody,this.appendToken())
+  }
+
 }

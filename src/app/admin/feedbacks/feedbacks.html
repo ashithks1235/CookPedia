@@ -16,18 +16,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>ytgygs</td>
-                        <td>vhjgs</td>
-                        <td>vhds</td>
-                        <td>
-                            <div class="d-flex">
-                                <button class="btn btn-success me-2"><i class="fa-solid fa-check"></i></button>
-                                <button class="btn btn-danger"><i class="fa-solid fa-x"></i></button>
-                            </div>
-                        </td>
-                    </tr>
+                    @for (item of allFeedbacks(); track $index; let i = $index) {
+                        <tr>
+                            <td>{{i+1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.message}}</td>
+                            <td>
+                                @if (item.status=="pending") {
+                                    <div class="d-flex">
+                                        <button (click)="updateFeedbackStatus(item._id,'approve')" class="btn btn-success me-2"><i class="fa-solid fa-check"></i></button>
+                                        <button (click)="updateFeedbackStatus(item._id,'reject')" class="btn btn-danger"><i class="fa-solid fa-x"></i></button>
+                                    </div>
+                                }@else if (item.status=="approve") {
+                                    <button  class="btn btn-success">APPROVED</button>
+                                }@else {
+                                    <button class="btn btn-danger">REJECTED</button>
+                                }
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>

@@ -1,1 +1,79 @@
-<p>manage-recipe works!</p>
+<div class="d-flex justify-content-center align-items-center flex-column">
+    <h1 class="my-5">
+        @if(recipeId){
+            Update
+        }@else{
+            Add
+        } Recipe Details</h1>
+        <div style="width: 800px;" class="border p-5 rounded">
+            <div class="row">
+                <div class="col-lg-6">
+                <div class="mb-2">
+                    <input type="text" placeholder="Recipe Name" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <input type="text" placeholder="Recipe Cuisine" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <input type="text" placeholder="Recipe Image URL" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <input type="text" placeholder="Recipe Preparation time in Minutes (eg: 25)" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex mb-2">
+                        <textarea name="" id="" placeholder="Add Ingredients" class="form-control"></textarea>
+                        <button class="btn fw-bolder fs-1 ms-1">+</button>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" placeholder="Ingredients" class="form-control" readonly>
+                        <button class="btn text-danger fw-bolder ms-1"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-2">
+                    <input type="text" placeholder="Servings (eg:4)" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <input type="text" placeholder="Calories per servings (eg:350)" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <input type="text" placeholder="Recipe Cook Time in Minutes (eg: 25)" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <select name="" id="" class="form-control">
+                        <option selected hidden disabled>Choose mode of cooking</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex mb-2">
+                        <textarea name="" id="" placeholder="Add Instructions" class="form-control"></textarea>
+                        <button class="btn fw-bolder fs-1 ms-1">+</button>
+                    </div>
+                    <div class="d-flex">
+                        <input type="text" placeholder="Instructions" class="form-control" readonly>
+                        <button class="btn text-danger fw-bolder ms-1"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="my-2 d-flex">
+                <input type="text" class="form-control" placeholder="Add Meal types (eg: Breakfast, Lunch, Dinner)">
+                <button class="btn fw-bolder fs-1 ms-1">+</button>
+            </div>
+            <div class="d-flex flex-wrap">
+                <span class="border rounded ps-2">meal <button class="btn fw-bolder"><i class="fa-solid fa-x"></i></button></span>
+            </div>
+            <div class="text-center my-2">
+                @if (recipeId) {
+                    <button class="btn fw-bolder btn-primary">UPDATE RECIPE</button>
+                }@else {
+                    <button class="btn fw-bolder btn-success">ADD RECIPE</button>
+                }
+            </div>
+        </div>
+</div>
