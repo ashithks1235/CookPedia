@@ -113,4 +113,9 @@ addFeedbackAPI(reqBody:any){
     return this.http.put(`${this.server_url}/recipes/${recipeId}`,reqBody,this.appendToken())
   }
 
+  //http://localhost:3000/recipes/696f4fadcf68a81d18f610c3 ; delete request by
+  removeRecipeAPI(recipeId:string){
+    return this.http.delete(`${this.server_url}/recipes/${recipeId}`,this.appendToken())
+  }
+
 }

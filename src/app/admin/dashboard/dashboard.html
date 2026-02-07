@@ -1,10 +1,76 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-2">
-            <app-sidebar></app-sidebar>
-        </div>
+        @if (sideBarOpen) {
+            <div class="col-lg-2">
+                <app-sidebar></app-sidebar>
+            </div>
+        }
         <div class="col">
-            dashboard works
+            <!-- banner -->
+             <div class="row">
+                <div class="d-flex bg-success justify-content-between text-light p-3">
+                    <h1><button (click)="toggleSidebar()" class="btn text-light"><i class="fa-solid fa-bars fs-1"></i></button>ADMIN</h1>
+                    <!-- logout dropdown -->
+                     <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button (click)="logout()" class="dropdown-item">Logout <i class="fa-solid fa-power-off"></i></button></li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+             <!-- box row -->
+              <div class="row my-5">
+                <div class="col-lg-3">
+                    <div style="background-color: rgb(242, 209, 65);" class="d-flex p-2 rounded text-light align-items-center justify-content-center">
+                        <i class="fa-solid fa-users fs-1"></i>
+                        <div class="ms-1">
+                            <h3>Users</h3>
+                            <h5>{{userCount()}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div style="background-color: rgb(181, 253, 93);" class="d-flex p-2 rounded text-light align-items-center justify-content-center">
+                        <i class="fa-solid fa-bowl-rice fs-1"></i>
+                        <div class="ms-1">
+                            <h3>Recipes</h3>
+                            <h5>{{recipeCount()}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div style="background-color: rgb(89, 198, 213);" class="d-flex p-2 rounded text-light align-items-center justify-content-center">
+                        <i class="fa-solid fa-downloads fs-1"></i>
+                        <div class="ms-1">
+                            <h3>Downloads</h3>
+                            <h5>{{downloadCount()}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div style="background-color: rgb(224, 127, 244);" class="d-flex p-2 rounded text-light align-items-center justify-content-center">
+                        <i class="fa-solid fa-message"></i>
+                        <div class="ms-5">
+                            <h3>Notification</h3>
+                            <h5>you have <a routerLink="/admin/feedbacks">{{feedbackCount()}}</a>new feedbacks!!</h5>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row my-5">
+                <div class="col-lg-8">
+                    <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'bar'"> </canvas>
+                </div>
+                <div class="col-lg-4">
+                    <!-- calender -->
+                    <mat-card class="demo-inline-calendar-card">
+                        <mat-calendar [(selected)]="selected"></mat-calendar>
+                    </mat-card>
+                </div>
+              </div>
         </div>
     </div>
 </div>

@@ -23,6 +23,12 @@ export class Recipes {
     })
   }
 
+  removeRecipe(recipeId:any){
+    this.api.removeRecipeAPI(recipeId).subscribe((res:any)=>{
+      alert("recipe removed sucessfully")
+      this.getAllRecipes()
+    })
+  }
 
 
 }

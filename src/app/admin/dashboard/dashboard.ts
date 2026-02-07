@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../../services/api-service';
+import { ChartConfiguration, ChartType } from 'chart.js';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -7,5 +11,75 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.css',
 })
 export class Dashboard {
+
+  api = inject(ApiService)
+  router = inject(Router)
+  sideBarOpen:boolean = true
+  userCount = signal<number>(0)
+  recipeCount = signal<number>(0)
+  downloadCount = signal<number>(0)
+  feedbackCount = signal<number>(0)
+  selected = new Date()
+  barChartOptions: ChartConfiguration<'bar'>['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true
+      },
+      title:{
+        text:'analysis of download recipes based on its cuisine',
+        display:true
+      }
+    }
+  };
+  barChartData: ChartConfiguration<'bar'>['data'] = {
+    labels: ['Jan','Feb','Mar','Apr','May'],
+    datasets: [
+      {
+        label: 'Sales',
+        data: [120,150,180,90,200]
+      }
+    ]
+  }
+
+  ngOnInit(){
+    this.getUserCount()
+    this.getRecipeCount()
+    this.getDownloadCount()
+    this.getFeedbackCount()
+  }
+
+  getFeedbackCount(){
+    this.api.getAllFeedbacksAPI().subscribe((res:any)=>{
+      this.feedbackCount.set(res.filter((item:any)=>item.status=="pending").length)
+    })
+  }
+
+  getDownloadCount(){
+    this.api.getAllDownloadAPI().subscribe((res:any)=>{
+      this.downloadCount.set(res.reduce((acc:any,cur:any)=>acc+cur.count,0))
+    })
+  }
+
+  getRecipeCount(){
+    this.api.getAllRecipesAPI().subscribe((res:any)=>{
+      this.recipeCount.set(res.length)
+    })
+  }
+
+  getUserCount(){
+    this.api.getAllUsersAPI().subscribe((res:any)=>{
+      this.userCount.set(res.length)
+    })
+  }
+
+  toggleSidebar(){
+    this.sideBarOpen = !this.sideBarOpen
+  }
+
+  logout(){
+    sessionStorage.clear()
+    this.router.navigateByUrl('/login')
+  }
 
 }
