@@ -33,13 +33,29 @@ export class Dashboard {
     }
   };
   barChartData: ChartConfiguration<'bar'>['data'] = {
-    labels: ['Jan','Feb','Mar','Apr','May'],
+    labels: ['Italian','Indian','Asian','Apr','May'],
     datasets: [
       {
-        label: 'Sales',
+        label: 'Count',
         data: [120,150,180,90,200]
       }
     ]
+  };
+
+  constructor(){
+    if(localStorage.getItem("labels") && localStorage.getItem("data")){
+      const labels = JSON.parse(localStorage.getItem("labels") || "")
+      const data = JSON.parse(localStorage.getItem("data") || "")
+      this.barChartData = {
+        labels,
+        datasets: [
+          {
+            label: 'Count',
+            data
+          }
+        ]
+      };
+    }
   }
 
   ngOnInit(){

@@ -118,4 +118,23 @@ addFeedbackAPI(reqBody:any){
     return this.http.delete(`${this.server_url}/recipes/${recipeId}`,this.appendToken())
   }
 
+  getChartData(){
+    this.getAllDownloadAPI().subscribe((downloadListArray:any)=>{
+      let output:any = {}
+      downloadListArray.forEach((recipe:any) => {
+        let cuisine = recipe.cuisine
+        let curCount = recipe.count
+        if(cuisine in output){
+          output[cuisine] += curCount
+        }else{
+          output[cuisine] = curCount
+        }
+      });
+      const keys = Object.keys(output)
+      localStorage.setItem("labels",JSON.stringify(keys))
+      const data = Object.values(output)
+      localStorage.setItem("data",JSON.stringify(data))
+    })
+  }
+
 }

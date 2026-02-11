@@ -9,11 +9,13 @@ import { Profile } from './profile/profile';
 import { SaveRecipe } from './save-recipe/save-recipe';
 import { ViewRecipe } from './view-recipe/view-recipe';
 import { Pnf } from './pnf/pnf';
+import { authGuard } from './guards/auth-guard';
+import { adminAuthGuard } from './guards/admin-auth-guard';
 
 export const routes: Routes = [
     // lazy loaded - http://localhost:4200/admin
     {
-        path:'admin',loadChildren:()=>import('./admin/admin-module').then(module=>module.AdminModule)
+        path:'admin',canActivate:[adminAuthGuard],loadChildren:()=>import('./admin/admin-module').then(module=>module.AdminModule)
     },
     // home
     {
@@ -41,15 +43,15 @@ export const routes: Routes = [
     },
     // profile
     {
-        path:'profile',component:Profile,title:'Profile'
+        path:'profile',canActivate:[authGuard],component:Profile,title:'Profile'
     },
     // recipes-save
     {
-        path:'recipe/save',component:SaveRecipe,title:'Recipe Collection'
+        path:'recipe/save',canActivate:[authGuard],component:SaveRecipe,title:'Recipe Collection'
     },
     // recipes-view
     {
-        path:'recipes/:id/view',component:ViewRecipe,title:'View Recipe'
+        path:'recipes/:id/view',canActivate:[authGuard],component:ViewRecipe,title:'View Recipe'
     },
     // pnf
     {

@@ -1,1 +1,13 @@
-<p>pnf works!</p>
+<div style="height: 100vh;" class="d-flex justify-content-center align-items-center flex-column">
+    <h1>404!</h1>
+    <h4>PAGE NOT FOUND</h4>
+    <img class="img-fluid w-25" src="https://webartdevelopers.com/blog/wp-content/uploads/2018/10/SVG-Animation-404-Page.gif" alt="">
+    <h2>Look like You're Lost</h2>
+    <p>The page you're looking for is not available</p>
+    @if(role == "admin"){
+        <a class="btn btn-primary my-5" routerLink="/admin">Back To Home</a>
+    }@else{
+        <a class="btn btn-primary my-5" routerLink="/">Back To Home</a>
+    }
+    
+</div>
